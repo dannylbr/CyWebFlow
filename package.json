@@ -4,7 +4,8 @@
   "description": "Simple model to test a webpage",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run"
+    "test": "npx cypress run",
+    "open": "npx cypress open"
   },
   "keywords": [
     "e2e",
@@ -12,7 +13,18 @@
   ],
   "author": "Daniel Soares (BRA_094747267-36)",
   "license": "ISC",
-  "devDependencies": {
-    "cypress": "^12.7.0"
+  "dependencies": {
+    "cypress": "latest",
+    "@badeball/cypress-cucumber-preprocessor": "latest",
+    "@cypress/browserify-preprocessor": "latest",
+    "cypress-xpath": "latest",
+    "@cypress/webpack-preprocessor": "latest",
+    "ts-loader": "latest",
+    "typescript": "latest",
+    "webpack": "latest"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "cypress/e2e/**/*.ts"
   }
 }
