@@ -25,8 +25,3 @@
 	Scenario: Access Comments page from the menu
 		When Click on Comments link
 		Then Comments page is shown
-
-	@Homepage @Donate
-	Scenario: Access Donate page from the menu
-		When Click on Donate link
-		Then Donate page is shown

@@ -14,11 +14,11 @@
   "author": "Daniel Soares (BRA_094747267-36)",
   "license": "ISC",
   "dependencies": {
-    "cypress": "latest",
-    "@badeball/cypress-cucumber-preprocessor": "latest",
+    "@badeball/cypress-cucumber-preprocessor": "^20.0.1",
     "@cypress/browserify-preprocessor": "latest",
-    "cypress-xpath": "latest",
     "@cypress/webpack-preprocessor": "latest",
+    "cypress": "latest",
+    "cypress-xpath": "latest",
     "ts-loader": "latest",
     "typescript": "latest",
     "webpack": "latest"
