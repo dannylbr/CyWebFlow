@@ -1,6 +1,6 @@
-name: 'CyWebFlow Cypress Tests'
+name: 'CyWebFlow Cypress E2E Tests for IntegraeSol Website'
 description: 'Run Cypress tests for CyWebFlow project'
-author: 'seu-nome-de-usuario'
+author: 'dannylbr'
 branding:
   icon: check-circle
   color: blue
@@ -45,7 +45,7 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18' # Ou a versão que você utiliza
+        node-version: '22.14.0' # Ou a versão que você utiliza
 
     - name: Install dependencies
       run: npm install
