@@ -21,7 +21,7 @@ inputs:
   record:
     description: 'Whether to record the test run on Cypress Dashboard'
     required: false
-    default: 'false'
+    default: 'false' # Alterado para false
   record-key:
     description: 'Cypress Record Key (required if record is true)'
     required: false
