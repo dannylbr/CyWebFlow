@@ -16,7 +16,7 @@ jobs:
       - uses: ./ # Usa a Action local
         with:
           cypress-command: 'run'
-          spec-pattern: 'cypress/e2e/*.spec.js'
+          spec-pattern: 'cypress/e2e/*.spec.ts'
           browser: 'chrome'
           record: 'false'
           record-key: ${{ secrets.CYPRESS_RECORD_KEY }}
