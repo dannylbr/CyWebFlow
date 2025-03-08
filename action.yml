@@ -1,0 +1,66 @@
+name: 'CyWebFlow Cypress Tests'
+description: 'Run Cypress tests for CyWebFlow project'
+author: 'seu-nome-de-usuario'
+branding:
+  icon: check-circle
+  color: blue
+
+inputs:
+  cypress-command:
+    description: 'Cypress command to run (e.g., run, open)'
+    required: false
+    default: 'run'
+  spec-pattern:
+    description: 'Pattern to select spec files (e.g., cypress/e2e/*.spec.js)'
+    required: false
+    default: 'cypress/e2e/*.spec.js'
+  browser:
+    description: 'Browser to run Cypress tests (e.g., chrome, firefox, edge)'
+    required: false
+    default: 'chrome'
+  record:
+    description: 'Whether to record the test run on Cypress Dashboard'
+    required: false
+    default: 'false'
+  record-key:
+    description: 'Cypress Record Key (required if record is true)'
+    required: false
+  parallel:
+    description: 'Whether to run tests in parallel'
+    required: false
+    default: 'false'
+  group:
+    description: 'Group name for the test run on Cypress Dashboard'
+    required: false
+  tag:
+    description: 'Tags for the test run on Cypress Dashboard'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' # Ou a versão que você utiliza
+
+    - name: Install dependencies
+      run: npm install
+      shell: bash
+
+    - name: Run Cypress tests
+      run: |
+        npx cypress ${{ inputs.cypress-command }} \
+          --spec "${{ inputs.spec-pattern }}" \
+          --browser "${{ inputs.browser }}" \
+          ${{ inputs.record == 'true' && '--record' || '' }} \
+          ${{ inputs.record == 'true' && inputs.record-key && '--key ' + inputs.record-key || '' }} \
+          ${{ inputs.parallel == 'true' && '--parallel' || '' }} \
+          ${{ inputs.group && '--group ' + inputs.group || '' }} \
+          ${{ inputs.tag && '--tag ' + inputs.tag || '' }}
+      shell: bash
+      env:
+        CYPRESS_RECORD_KEY: ${{ inputs.record-key }} # Garante que a chave esteja disponível como variável de ambiente
