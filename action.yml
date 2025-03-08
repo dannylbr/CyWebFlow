@@ -8,15 +8,15 @@ branding:
 inputs:
   cypress-command:
     description: 'Cypress command to run (e.g., run, open)'
-    required: false
+    required: true
     default: 'run'
   spec-pattern:
     description: 'Pattern to select spec files (e.g., cypress/e2e/*.spec.js)'
-    required: false
+    required: true
     default: 'cypress/e2e/*.spec.js'
   browser:
     description: 'Browser to run Cypress tests (e.g., chrome, firefox, edge)'
-    required: false
+    required: true
     default: 'chrome'
   record:
     description: 'Whether to record the test run on Cypress Dashboard'
@@ -27,7 +27,7 @@ inputs:
     required: false
   parallel:
     description: 'Whether to run tests in parallel'
-    required: false
+    required: true
     default: 'false'
   group:
     description: 'Group name for the test run on Cypress Dashboard'
