@@ -10,10 +10,13 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3 # Adicionado actions/checkout
+
       - uses: ./ # Usa a Action local
         with:
           cypress-command: 'run'
           spec-pattern: 'cypress/e2e/*.spec.js'
           browser: 'chrome'
-          record: 'true' # Se você quiser gravar no Cypress Dashboard
-          record-key: ${{ secrets.CYPRESS_RECORD_KEY }} # Armazene sua chave como um secret
+          record: 'true'
+          record-key: ${{ secrets.CYPRESS_RECORD_KEY }}
