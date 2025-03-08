@@ -59,8 +59,8 @@ runs:
           ${{ inputs.record == 'true' && '--record' || '' }} \
           ${{ inputs.record == 'true' && inputs.record-key && format('--key {0}', inputs.record-key) || '' }} \
           ${{ inputs.parallel == 'true' && '--parallel' || '' }} \
-          ${{ inputs.group && '--group ' + inputs.group || '' }} \
-          ${{ inputs.tag && '--tag ' + inputs.tag || '' }}
+          ${{ inputs.group && format('--group {0}', inputs.group) || '' }} \
+          ${{ inputs.tag && format('--tag {0}', inputs.tag) || '' }}
       shell: bash
       env:
         CYPRESS_RECORD_KEY: ${{ inputs.record-key }} # Garante que a chave esteja disponível como variável de ambiente
