@@ -1,29 +1,26 @@
 import { defineConfig } from "cypress";
 import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-preprocessor";
-import browserify from "@badeball/cypress-cucumber-preprocessor/browserify";
-
-async function setupNodeEvents(
-  on: Cypress.PluginEvents,
-  config: Cypress.PluginConfigOptions
-): Promise<Cypress.PluginConfigOptions> {
-  // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
-  await addCucumberPreprocessorPlugin(on, config);
-
-  on(
-    "file:preprocessor",
-    browserify(config, {
-      typescript: require.resolve("typescript"),
-    })
-  );
-
-  // Make sure to return the config object as it might have been modified by the plugin.
-  return config;
-}
+import createBundler from "@bahmutov/cypress-esbuild-preprocessor";
+import {
+  createEsbuildPlugin,
+} from "@badeball/cypress-cucumber-preprocessor/esbuild";
 
 export default defineConfig({
   e2e: {
     specPattern: "cypress/e2e/**/*.feature",
-    setupNodeEvents,
-    baseUrl: 'https://sites.google.com/view/integraesol/',
+    baseUrl: "https://sites.google.com/view/integraesol/",
+
+    async setupNodeEvents(on, config) {
+      await addCucumberPreprocessorPlugin(on, config);
+
+      on(
+        "file:preprocessor",
+        createBundler({
+          plugins: [createEsbuildPlugin(config)],
+        })
+      );
+
+      return config;
+    },
   },
 });
