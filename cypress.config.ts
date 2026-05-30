@@ -8,7 +8,7 @@ import {
 export default defineConfig({
   e2e: {
     specPattern: "cypress/e2e/**/*.feature",
-    baseUrl: "https://sites.google.com/view/integraesol/",
+    baseUrl: "https://sites.google.com/view/afterburnout/",
 
     async setupNodeEvents(on, config) {
       await addCucumberPreprocessorPlugin(on, config);
